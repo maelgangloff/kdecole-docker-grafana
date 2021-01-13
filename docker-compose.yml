@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  database:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: KDECOLE
+    expose:
+      - 3306
+    volumes:
+    - mariadb-storage:/var/lib/mysql
+  grafana:
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 3000:3000
+    links:
+      - database
+    volumes:
+    - grafana-storage:/var/lib/grafana
+    depends_on:
+      - database
+      - kdecole
+  kdecole:
+    build: kdecole
+    restart: always
+    environment:
+      KDECOLE_TOKEN: ${KDECOLE_TOKEN}
+    links:
+      - database
+    depends_on:
+      - database
+volumes:
+  grafana-storage:
+    external: true
+  mariadb-storage:
+    external: true
+

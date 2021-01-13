@@ -1,0 +1,4 @@
+kdecole-docker.iml
+.idea
+/kdecole/node_modules/
+.env

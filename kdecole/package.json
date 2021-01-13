@@ -1,0 +1,20 @@
+{
+  "name": "kdecole-docker",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "keywords": [],
+  "author": {
+    "name": "Maël Gangloff",
+    "email": "maelgangloffd@gmail.com"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cron": "^1.8.2",
+    "kdecole-api": "^1.0.14",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.20"
+  }
+}
