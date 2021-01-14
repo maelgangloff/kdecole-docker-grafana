@@ -51,6 +51,7 @@ connection.query(`CREATE TABLE IF NOT EXISTS devoirs
                       noteMin     DECIMAL(4, 2) NOT NULL,
                       noteMax     DECIMAL(4, 2) NOT NULL,
                       trimestre   VARCHAR(30)   NOT NULL,
+                      bareme      INT           NOT NULL,
                       idEleve     VARCHAR(255)  NOT NULL,
                       UNIQUE KEY id (id) USING BTREE,
                       PRIMARY KEY (id)
@@ -70,9 +71,9 @@ async function fetch() {
             for (const matiere of trimestre.matieres) {
                 for (const devoir of matiere.devoirs) {
                     if (isNaN(devoir.note) || devoir.note === null) continue
-                    connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${devoir.note}, '${matiere.matiereLibelle}', ${devoir.coefficient}, '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${devoir.noteMin}, ${devoir.noteMax}, '${trimestre.periodeLibelle}', '${student.uid}')`)
+                    connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${devoir.note}, '${matiere.matiereLibelle}', ${devoir.coefficient}, '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${devoir.noteMin}, ${devoir.noteMax}, '${trimestre.periodeLibelle}', ${devoir.bareme} ,'${student.uid}')`)
                 }
-                connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${trimestre.idPeriode}_${matiere.matiereLibelle}', ${matiere.moyenneEleve}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${student.uid}');`)
+                connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${student.uid}_${trimestre.idPeriode}_${matiere.matiereLibelle}', ${(matiere.moyenneEleve / matiere.bareme) * 20}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${student.uid}');`)
             }
             connection.query(`INSERT IGNORE moyenneGenerale VALUES (${trimestre.idPeriode}, '${trimestre.periodeLibelle}', ${trimestre.getMoyenneGenerale()}, '${student.uid}');`);
         }
