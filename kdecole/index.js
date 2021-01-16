@@ -46,17 +46,19 @@ connection.query(`CREATE TABLE IF NOT EXISTS devoirs
                       id          INT           NOT NULL,
                       note        DECIMAL(4, 2) NOT NULL,
                       matiere     VARCHAR(20)   NOT NULL,
-                      coefficient TINYINT       NOT NULL,
                       timestamp   DATETIME      NOT NULL,
                       noteMin     DECIMAL(4, 2) NOT NULL,
                       noteMax     DECIMAL(4, 2) NOT NULL,
                       trimestre   VARCHAR(30)   NOT NULL,
-                      bareme      INT           NOT NULL,
                       idEleve     VARCHAR(255)  NOT NULL,
                       UNIQUE KEY id (id) USING BTREE,
                       PRIMARY KEY (id)
                   );`)
 
+
+function to20(note, bareme){
+    return (note / bareme) * 20
+}
 
 async function fetch() {
     console.log('Fetch')
@@ -71,9 +73,9 @@ async function fetch() {
             for (const matiere of trimestre.matieres) {
                 for (const devoir of matiere.devoirs) {
                     if (isNaN(devoir.note) || devoir.note === null) continue
-                    connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${devoir.note}, '${matiere.matiereLibelle}', ${devoir.coefficient}, '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${devoir.noteMin}, ${devoir.noteMax}, '${trimestre.periodeLibelle}', ${devoir.bareme} ,'${student.uid}')`)
+                    connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${to20(devoir.note, devoir.bareme)}, '${matiere.matiereLibelle}', '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${to20(devoir.noteMin, devoir.bareme)}, ${to20(devoir.noteMax, devoir.bareme)}, '${trimestre.periodeLibelle}' ,'${student.uid}')`)
                 }
-                connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${student.uid}_${trimestre.idPeriode}_${matiere.matiereLibelle}', ${(matiere.moyenneEleve / matiere.bareme) * 20}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${student.uid}');`)
+                connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${student.uid}_${trimestre.idPeriode}_${matiere.matiereLibelle}', ${to20(matiere.moyenneEleve, matiere.bareme)}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${student.uid}');`)
             }
             connection.query(`INSERT IGNORE moyenneGenerale VALUES (${trimestre.idPeriode}, '${trimestre.periodeLibelle}', ${trimestre.getMoyenneGenerale()}, '${student.uid}');`);
         }

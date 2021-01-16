@@ -16,9 +16,10 @@ Utilise l'API K-D'Ecole pour récupérer ses notes et les transformer en graphiq
 Avant de créer votre premier tableau de bord, il vous faudra ajouter une source de données.  
 Pour se faire, rendez-vous dans les paramètres et cliquez sur **Data Sources**.  
 Ajoutez une source de données **MySQL** en précisant:
-- Le nom d'host **database:3306**
-- Le nom d'utilisateur **root**
-- Le mot de passe **root**
+- Le nom d'host: **database:3306**
+- La base de donnée: **KDECOLE**
+- Le nom d'utilisateur: **root**
+- Le mot de passe: **root**
 
 Créer son tableau de bord sur Grafana est assez simple. Il vous suffit d'ajouter quelques widgets.  
 La seule "difficulté" est de faire la bonne requête à la base de donnée.
