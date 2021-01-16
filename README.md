@@ -17,7 +17,7 @@ Avant de créer votre premier tableau de bord, il vous faudra ajouter une source
 Pour se faire, rendez-vous dans les paramètres et cliquez sur **Data Sources**.  
 Ajoutez une source de données **MySQL** en précisant:
 - Le nom d'host: **database:3306**
-- La base de donnée: **KDECOLE**
+- La base de données: **KDECOLE**
 - Le nom d'utilisateur: **root**
 - Le mot de passe: **root**
 
