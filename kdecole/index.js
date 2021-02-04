@@ -63,22 +63,33 @@ function to20(note, bareme){
 async function fetch() {
     console.log('Fetch')
 
-    const students = (await user.getInfoUtilisateur()).eleves
-    for (const student of students) {
-        const {trimestres} = await user.getReleve(student.uid)
+    const infoUser = await user.getInfoUtilisateur()
 
-
-        for (const trimestre of trimestres) {
-            if (trimestre.matieres.length === 0) continue
-            for (const matiere of trimestre.matieres) {
-                for (const devoir of matiere.devoirs) {
-                    if (isNaN(devoir.note) || devoir.note === null) continue
-                    connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${to20(devoir.note, devoir.bareme)}, '${matiere.matiereLibelle}', '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${to20(devoir.noteMin, devoir.bareme)}, ${to20(devoir.noteMax, devoir.bareme)}, '${trimestre.periodeLibelle}' ,'${student.uid}')`)
-                }
-                connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${student.uid}_${trimestre.idPeriode}_${matiere.matiereLibelle}', ${to20(matiere.moyenneEleve, matiere.bareme)}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${student.uid}');`)
+    switch (infoUser.type){
+        case 1:
+            await fetchStudent('current')
+            break
+        default:
+            for (const student of infoUser.eleves){
+                await fetchStudent(student.uid)
             }
-            connection.query(`INSERT IGNORE moyenneGenerale VALUES (${trimestre.idPeriode}, '${trimestre.periodeLibelle}', ${trimestre.getMoyenneGenerale()}, '${student.uid}');`);
+    }
+}
+
+async function fetchStudent(uid){
+    const {trimestres} = await user.getReleve()
+
+
+    for (const trimestre of trimestres) {
+        if (trimestre.matieres.length === 0) continue
+        for (const matiere of trimestre.matieres) {
+            for (const devoir of matiere.devoirs) {
+                if (isNaN(devoir.note) || devoir.note === null) continue
+                connection.query(`INSERT IGNORE devoirs VALUES (${devoir.id}, ${to20(devoir.note, devoir.bareme)}, '${matiere.matiereLibelle}', '${devoir.date.toISOString().slice(0, 19).replace('T', ' ')}', ${to20(devoir.noteMin, devoir.bareme)}, ${to20(devoir.noteMax, devoir.bareme)}, '${trimestre.periodeLibelle}' ,'${uid}')`)
+            }
+            connection.query(`INSERT IGNORE moyennes VALUES ('${matiere.matiereLibelle}', '${uid}_${trimestre.idPeriode}_${matiere.matiereLibelle}', ${to20(matiere.moyenneEleve, matiere.bareme)}, ${matiere.moyenneClasse}, '${trimestre.idPeriode}', '${uid}');`)
         }
+        connection.query(`INSERT IGNORE moyenneGenerale VALUES (${trimestre.idPeriode}, '${trimestre.periodeLibelle}', ${trimestre.getMoyenneGenerale()}, '${uid}');`);
     }
 }
 
