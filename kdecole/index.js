@@ -10,11 +10,7 @@ const connection = createConnection({
 })
 connection.connect()
 
-const user = new Kdecole(
-    process.env.KDECOLE_TOKEN,
-    process.env.KDECOLE_VERSION,
-    0,
-    process.env.KDECOLE_URL)
+const user = new Kdecole(process.env.KDECOLE_TOKEN)
 
 connection.query(`DROP TABLE IF EXISTS moyennes;`)
 connection.query(`DROP TABLE IF EXISTS moyenneGenerale;`)
