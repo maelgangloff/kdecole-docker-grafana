@@ -6,6 +6,7 @@ Utilise l'API K-D'Ecole pour récupérer ses notes et les transformer en graphiq
 1. Lancer `docker volume create mariadb-storage` et `docker volume create grafana-storage`
 1. Cloner le projet
 1. Créer un fichier `.env` à la racine du projet
+<<<<<<< HEAD
 1. Ajouter `KDECOLE_TOKEN=<VOTRE_TOKEN>` dans le fichier .env en remplaçant VOTRE_TOKEN par votre jeton d'authentification K-D'Ecole
 
 1. Lancer la commande `docker-compose up --build -d`
