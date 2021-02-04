@@ -7,6 +7,7 @@ Utilise l'API K-D'Ecole pour récupérer ses notes et les transformer en graphiq
 1. Cloner le projet
 1. Créer un fichier `.env` à la racine du projet
 1. Ajouter `KDECOLE_TOKEN=<VOTRE_TOKEN>` dans le fichier .env en remplaçant VOTRE_TOKEN par votre jeton d'authentification K-D'Ecole
+
 1. Lancer la commande `docker-compose up --build -d`
 1. Se rendre dans son navigateur à l'adresse http://localhost:3000/
 1. Se connecter (par défaut, le nom d'utilisateur et le mot de passe sont `admin`) puis changez votre mot de passe
@@ -26,3 +27,15 @@ La seule "difficulté" est de faire la bonne requête à la base de données.
 
 ## Exemple de tableau de bord
 ![gafana dashboard](https://github.com/maelgangloff/kdecole-docker-grafana/blob/master/doc/grafana_dashboard.png?raw=true)
+
+# Obtenir son jeton d'authentification  K-D'Ecole 
+* installer node-js
+* Exécuter la commande ```npm -i kdecole-api```
+* Créer un fichier nommé index.js dans un répertoire au choix
+* Ajouter les lignes suivantes au fichier
+```js
+const Kdecole = require('kdecole-api').default
+Kdecole.login("identifiant_mbn", "code_d'activation_mobile").then(token => console.log(token))
+```
+* Exécuter ```node .``` dans le même répertoire
+* Récupérer le jeton
