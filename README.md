@@ -12,6 +12,18 @@ Utilise l'API K-D'Ecole pour récupérer ses notes et les transformer en graphiq
 1. Se connecter (par défaut, le nom d'utilisateur et le mot de passe sont `admin`) puis changez votre mot de passe
 1. Créez votre tableau de bord
 
+### Obtenir son jeton d'authentification  K-D'Ecole 
+* installer node-js
+* Exécuter la commande ```npm -i kdecole-api```
+* Créer un fichier nommé index.js dans un répertoire au choix
+* Ajouter les lignes suivantes au fichier
+```js
+const Kdecole = require('kdecole-api').default
+Kdecole.login("identifiant_mbn", "code_d'activation_mobile").then(token => console.log(token))
+```
+* Exécuter ```node .``` dans le même répertoire
+* Récupérer le jeton
+
 ### Créer son tableau de bord
 Avant de créer votre premier tableau de bord, il vous faudra ajouter une source de données.  
 Pour se faire, rendez-vous dans les paramètres et cliquez sur **Data Sources**.  
