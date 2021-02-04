@@ -13,7 +13,7 @@ connection.connect()
 const user = new Kdecole(
     process.env.KDECOLE_TOKEN,
     process.env.KDECOLE_VERSION,
-    parseInt(process.env.KDECOLE_ETAB) ?? 0,
+    0,
     process.env.KDECOLE_URL)
 
 connection.query(`DROP TABLE IF EXISTS moyennes;`)
@@ -96,4 +96,3 @@ async function fetchStudent(uid){
 fetch()
 const job = new CronJob('0 */10 * * * *', fetch)
 job.start()
-

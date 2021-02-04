@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cron": "^1.8.2",
-    "kdecole-api": "git+https://github.com/maelgangloff/kdecole-api.git#test",
+    "kdecole-api": "git+https://github.com/maelgangloff/kdecole-api.git",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
