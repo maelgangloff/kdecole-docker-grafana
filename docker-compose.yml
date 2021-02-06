@@ -33,7 +33,5 @@ services:
       - database
 volumes:
   grafana-storage:
-    external: true
   mariadb-storage:
-    external: true
 
