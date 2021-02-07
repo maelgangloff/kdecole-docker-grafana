@@ -26,7 +26,7 @@ services:
     build: kdecole
     restart: always
     environment:
-      KDECOLE_TOKEN: ${KDECOLE_TOKEN}
+      KDECOLE_TOKEN: VOTRE_TOKEN
     links:
       - database
     depends_on:
