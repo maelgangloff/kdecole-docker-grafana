@@ -69,6 +69,9 @@ async function fetch() {
             await fetchStudent('current')
             break
         default:
+            connection.query('TRUNCATE TABLE moyennes;')
+            connection.query('TRUNCATE TABLE moyenneGenerale;')
+            connection.query('TRUNCATE TABLE devoirs;')
             for (const student of infoUser.eleves) {
                 await fetchStudent(student.uid)
             }
@@ -78,9 +81,6 @@ async function fetch() {
 async function fetchStudent(uid) {
     const {trimestres} = await user.getReleve()
 
-    connection.query('TRUNCATE TABLE moyennes;')
-    connection.query('TRUNCATE TABLE moyenneGenerale;')
-    connection.query('TRUNCATE TABLE devoirs;')
     for (const trimestre of trimestres) {
         if (trimestre.matieres.length === 0) continue
         for (const matiere of trimestre.matieres) {
