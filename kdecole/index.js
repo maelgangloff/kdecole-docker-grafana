@@ -10,7 +10,10 @@ const connection = createConnection({
 })
 connection.connect()
 
-const user = new Kdecole(process.env.KDECOLE_TOKEN)
+const user = new Kdecole(
+    process.env.KDECOLE_TOKEN,
+    process.env.KDECOLE_VERSION,
+    process.env.KDECOLE_URL)
 
 connection.query(`DROP TABLE IF EXISTS moyennes;`)
 connection.query(`DROP TABLE IF EXISTS moyenneGenerale;`)
@@ -39,20 +42,20 @@ connection.query(`CREATE TABLE IF NOT EXISTS moyenneGenerale
                   );`)
 connection.query(`CREATE TABLE IF NOT EXISTS devoirs
                   (
-                      id          INT           NOT NULL,
-                      note        DECIMAL(4, 2) NOT NULL,
-                      matiere     VARCHAR(20)   NOT NULL,
-                      timestamp   DATETIME      NOT NULL,
-                      noteMin     DECIMAL(4, 2) NOT NULL,
-                      noteMax     DECIMAL(4, 2) NOT NULL,
-                      trimestre   VARCHAR(30)   NOT NULL,
-                      idEleve     VARCHAR(255)  NOT NULL,
+                      id        INT           NOT NULL,
+                      note      DECIMAL(4, 2) NOT NULL,
+                      matiere   VARCHAR(20)   NOT NULL,
+                      timestamp DATETIME      NOT NULL,
+                      noteMin   DECIMAL(4, 2) NOT NULL,
+                      noteMax   DECIMAL(4, 2) NOT NULL,
+                      trimestre VARCHAR(30)   NOT NULL,
+                      idEleve   VARCHAR(255)  NOT NULL,
                       UNIQUE KEY id (id) USING BTREE,
                       PRIMARY KEY (id)
                   );`)
 
 
-function to20(note, bareme){
+function to20(note, bareme) {
     return (note / bareme) * 20
 }
 
@@ -61,21 +64,23 @@ async function fetch() {
 
     const infoUser = await user.getInfoUtilisateur()
 
-    switch (infoUser.type){
+    switch (infoUser.type) {
         case 1:
             await fetchStudent('current')
             break
         default:
-            for (const student of infoUser.eleves){
+            for (const student of infoUser.eleves) {
                 await fetchStudent(student.uid)
             }
     }
 }
 
-async function fetchStudent(uid){
+async function fetchStudent(uid) {
     const {trimestres} = await user.getReleve()
 
-
+    connection.query('TRUNCATE TABLE moyennes;')
+    connection.query('TRUNCATE TABLE moyenneGenerale;')
+    connection.query('TRUNCATE TABLE devoirs;')
     for (const trimestre of trimestres) {
         if (trimestre.matieres.length === 0) continue
         for (const matiere of trimestre.matieres) {
