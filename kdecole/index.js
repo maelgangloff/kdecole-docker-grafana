@@ -15,11 +15,6 @@ const user = new Kdecole(
     process.env.KDECOLE_VERSION,
     process.env.KDECOLE_URL)
 
-connection.query(`DROP TABLE IF EXISTS moyennes;`)
-connection.query(`DROP TABLE IF EXISTS moyenneGenerale;`)
-connection.query(`DROP TABLE IF EXISTS devoirs;`)
-
-
 connection.query(`CREATE TABLE IF NOT EXISTS moyennes
                   (
                       matiereLibelle VARCHAR(20)   NOT NULL,
@@ -66,20 +61,22 @@ async function fetch() {
 
     switch (infoUser.type) {
         case 1:
-            await fetchStudent('current')
+            const uid = (await user.getNotes()).codeEleve
+            await fetchStudent(uid)
             break
         default:
             connection.query('TRUNCATE TABLE moyennes;')
             connection.query('TRUNCATE TABLE moyenneGenerale;')
             connection.query('TRUNCATE TABLE devoirs;')
-            for (const student of infoUser.eleves) {
+            for (const student of infoUser.eleves){
                 await fetchStudent(student.uid)
             }
     }
 }
 
 async function fetchStudent(uid) {
-    const {trimestres} = await user.getReleve()
+    console.log('Fetch student:', uid)
+    const {trimestres} = await user.getReleve(uid)
 
     for (const trimestre of trimestres) {
         if (trimestre.matieres.length === 0) continue
