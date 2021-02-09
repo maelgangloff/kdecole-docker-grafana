@@ -1,6 +1,8 @@
 const Kdecole = require('kdecole-api').default
 const {CronJob} = require('cron')
 const {createConnection} = require('mysql')
+const {get} = require('axios')
+const dayjs = require('dayjs')
 
 const connection = createConnection({
     host: process.env.MYSQL_HOST,
@@ -14,7 +16,7 @@ const user = new Kdecole(
     process.env.KDECOLE_TOKEN,
     process.env.KDECOLE_VERSION,
     process.env.KDECOLE_URL)
-
+connection.query('DROP TABLE IF EXISTS moyennes, moyenneGenerale, devoirs, holidays;')
 connection.query(`CREATE TABLE IF NOT EXISTS moyennes
                   (
                       matiereLibelle VARCHAR(20)   NOT NULL,
@@ -49,6 +51,17 @@ connection.query(`CREATE TABLE IF NOT EXISTS devoirs
                       PRIMARY KEY (id)
                   );`)
 
+connection.query(`CREATE TABLE IF NOT EXISTS holidays
+                  (
+                      id          INT          DEFAULT 1,
+                      description VARCHAR(255) NOT NULL,
+                      start_date  DATE         NOT NULL,
+                      end_date    DATE         NOT NULL,
+                      jMoins      INT          NOT NULL,
+                      UNIQUE KEY id (id) USING BTREE,
+                      PRIMARY KEY (id)
+                  );`)
+
 
 function to20(note, bareme) {
     return (note / bareme) * 20
@@ -58,20 +71,23 @@ async function fetch() {
     console.log('Fetch')
 
     const infoUser = await user.getInfoUtilisateur()
+    connection.query('TRUNCATE TABLE moyennes;')
+    connection.query('TRUNCATE TABLE moyenneGenerale;')
+    connection.query('TRUNCATE TABLE devoirs;')
+    connection.query('TRUNCATE TABLE holidays;')
 
     switch (infoUser.type) {
         case 1:
-            const uid = (await user.getNotes()).codeEleve
-            await fetchStudent(uid)
+            await fetchStudent((await user.getNotes()).codeEleve)
             break
         default:
-            connection.query('TRUNCATE TABLE moyennes;')
-            connection.query('TRUNCATE TABLE moyenneGenerale;')
-            connection.query('TRUNCATE TABLE devoirs;')
-            for (const student of infoUser.eleves){
+            for (const student of infoUser.eleves) {
                 await fetchStudent(student.uid)
             }
     }
+
+    await fetchHolidays()
+
 }
 
 async function fetchStudent(uid) {
@@ -89,6 +105,14 @@ async function fetchStudent(uid) {
         }
         connection.query(`INSERT IGNORE moyenneGenerale VALUES (${trimestre.idPeriode}, '${trimestre.periodeLibelle}', ${trimestre.getMoyenneGenerale()}, '${uid}');`);
     }
+}
+
+async function fetchHolidays() {
+    const annee_scolaire = '2020-2021'
+    const holiday = (await get(`https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&lang=fr&rows=15&facet=description&facet=start_date&facet=end_date&facet=annee_scolaire&refine.annee_scolaire=${annee_scolaire}&refine.location=${process.env.KDECOLE_ACADEMIE}&timezone=Europe%2FParis`)).data.records
+        .filter(record => dayjs(record.fields.start_date).isAfter() && record.fields.population !== 'Enseignants')[0]
+
+    connection.query(`INSERT holidays VALUES (1, "${holiday.fields.description}", '${holiday.fields.start_date}', '${holiday.fields.end_date}', ${dayjs(holiday.fields.start_date).diff(dayjs(), 'days')+1});`)
 }
 
 fetch()

@@ -10,7 +10,9 @@
   },
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.1",
     "cron": "^1.8.2",
+    "dayjs": "^1.10.4",
     "kdecole-api": "latest",
     "mysql": "^2.18.1"
   },
