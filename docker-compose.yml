@@ -9,7 +9,7 @@ services:
     expose:
       - 3306
     volumes:
-    - mariadb-storage:/var/lib/mysql
+      - mariadb-storage:/var/lib/mysql
   grafana:
     image: grafana/grafana
     restart: always
@@ -18,7 +18,7 @@ services:
     links:
       - database
     volumes:
-    - grafana-storage:/var/lib/grafana
+      - grafana-storage:/var/lib/grafana
     depends_on:
       - database
       - kdecole
@@ -27,6 +27,7 @@ services:
     restart: always
     environment:
       KDECOLE_TOKEN: VOTRE_TOKEN
+      KDECOLE_ACADEMIE: Strasbourg
     links:
       - database
     depends_on:
@@ -34,4 +35,3 @@ services:
 volumes:
   grafana-storage:
   mariadb-storage:
-

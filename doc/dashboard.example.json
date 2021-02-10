@@ -1,0 +1,655 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-RdYlGr"
+          },
+          "custom": {},
+          "displayName": "Notes",
+          "mappings": [],
+          "max": 150,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": []
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "matiere",
+          "rawQuery": true,
+          "rawSql": "SELECT timestamp AS \"time\", COUNT(*) FROM devoirs",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "note"
+                ],
+                "type": "column"
+              },
+              {
+                "params": [
+                  "note"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "table": "devoirs",
+          "timeColumn": "timestamp",
+          "timeColumnType": "timestamp",
+          "where": []
+        }
+      ],
+      "title": "Nombre total de notes",
+      "type": "gauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 18,
+        "w": 21,
+        "x": 3,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": false
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.0",
+      "pointradius": 5,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "matiere",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  timestamp AS \"time\",\n  matiere AS metric,\n  note\nFROM devoirs\nORDER BY timestamp",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "note"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "devoirs",
+          "timeColumn": "timestamp",
+          "timeColumnType": "timestamp",
+          "where": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Notes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:2331",
+          "decimals": null,
+          "format": "short",
+          "label": "Note",
+          "logBase": 1,
+          "max": "20",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:2332",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 3,
+        "x": 0,
+        "y": 4
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  NOW() AS \"time\",\n  jMoins\nFROM holidays",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "jMoins"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "holidays",
+          "timeColumn": "id",
+          "timeColumnType": "int",
+          "where": []
+        }
+      ],
+      "title": "J- Vacances",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 2,
+          "mappings": [],
+          "max": 20,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 12
+              },
+              {
+                "color": "dark-green",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 3,
+        "x": 0,
+        "y": 7
+      },
+      "id": 8,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "trimestre",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  NOW() AS \"time\",\n  trimestre AS metric,\n  moyenneGenerale\nFROM moyenneGenerale\nORDER BY id",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "moyenneGenerale"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "moyenneGenerale",
+          "timeColumn": "id",
+          "timeColumnType": "int",
+          "where": []
+        }
+      ],
+      "title": "Moyennes générales",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 1,
+          "mappings": [],
+          "max": 20,
+          "min": 0,
+          "noValue": "Pas de notes",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 12
+              },
+              {
+                "color": "dark-green",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 10,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "matiereLibelle",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  idPeriode AS \"time\",\n  matiereLibelle AS metric,\n  moyenneEleve\nFROM moyennes\nWHERE\n  idPeriode = 25\nORDER BY idPeriode",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "moyenneEleve"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "moyennes",
+          "timeColumn": "idPeriode",
+          "timeColumnType": "int",
+          "where": [
+            {
+              "datatype": "int",
+              "name": "",
+              "params": [
+                "idPeriode",
+                "=",
+                "25"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Moyennes T1",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 1,
+          "mappings": [],
+          "max": 20,
+          "min": 0,
+          "noValue": "Pas de notes",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 10
+              },
+              {
+                "color": "green",
+                "value": 12
+              },
+              {
+                "color": "dark-green",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 23
+      },
+      "id": 11,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "matiereLibelle",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  idPeriode AS \"time\",\n  matiereLibelle AS metric,\n  moyenneEleve\nFROM moyennes\nWHERE\n  idPeriode = 26\nORDER BY idPeriode",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "moyenneEleve"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "moyennes",
+          "timeColumn": "idPeriode",
+          "timeColumnType": "int",
+          "where": [
+            {
+              "datatype": "int",
+              "name": "",
+              "params": [
+                "idPeriode",
+                "=",
+                "26"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Moyennes T2",
+      "type": "gauge"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "decimals": 1,
+          "mappings": [],
+          "max": 20,
+          "min": 0,
+          "noValue": "Pas de notes",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-red",
+                "value": 10
+              },
+              {
+                "color": "#EAB839",
+                "value": 12
+              },
+              {
+                "color": "dark-green",
+                "value": 15
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 28
+      },
+      "id": 12,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.0",
+      "targets": [
+        {
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "matiereLibelle",
+          "rawQuery": false,
+          "rawSql": "SELECT\n  idPeriode AS \"time\",\n  matiereLibelle AS metric,\n  moyenneEleve\nFROM moyennes\nWHERE\n  idPeriode = 27\nORDER BY idPeriode",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "moyenneEleve"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "table": "moyennes",
+          "timeColumn": "idPeriode",
+          "timeColumnType": "int",
+          "where": [
+            {
+              "datatype": "int",
+              "name": "",
+              "params": [
+                "idPeriode",
+                "=",
+                "27"
+              ],
+              "type": "expression"
+            }
+          ]
+        }
+      ],
+      "title": "Moyennes T3",
+      "type": "gauge"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2020-09-01T06:00:00.000Z",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "Europe/Paris",
+  "title": "Maël Gangloff",
+  "uid": "Z0_Enekgz",
+  "version": 1
+}
