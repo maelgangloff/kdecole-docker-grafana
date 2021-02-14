@@ -1,4 +1,4 @@
-const Kdecole = require('kdecole-api').default
+const { Kdecole } = require('kdecole-api')
 const {CronJob} = require('cron')
 const {createConnection} = require('mysql')
 const {get} = require('axios')
