@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE: KDECOLE
     expose:
       - 3306
+    networks:
+      - kdecole
     volumes:
       - mariadb-storage:/var/lib/mysql
   grafana:
@@ -15,8 +17,8 @@ services:
     restart: always
     ports:
       - 3000:3000
-    links:
-      - database
+    networks:
+      - kdecole
     volumes:
       - grafana-storage:/var/lib/grafana
     depends_on:
@@ -28,10 +30,12 @@ services:
     environment:
       KDECOLE_TOKEN: VOTRE_TOKEN
       KDECOLE_ACADEMIE: Strasbourg
-    links:
-      - database
+    networks:
+      - kdecole
     depends_on:
       - database
+networks:
+  kdecole:
 volumes:
   grafana-storage:
   mariadb-storage:
