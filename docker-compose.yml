@@ -21,6 +21,7 @@ services:
       - kdecole
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./doc/grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - database
       - kdecole

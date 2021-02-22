@@ -1,0 +1,11 @@
+apiVersion: 1
+
+datasources:
+  - name: KDECOLE_DATABASE
+    type: mysql
+    default: true
+    database: KDECOLE
+    user: root
+    url: database:3306
+    secureJsonData:
+      password: root

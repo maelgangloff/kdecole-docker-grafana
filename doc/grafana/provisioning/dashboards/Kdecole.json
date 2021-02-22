@@ -9,7 +9,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -86,7 +86,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -197,7 +197,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -268,7 +268,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -351,7 +351,7 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -446,7 +446,7 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -541,7 +541,7 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "KDECOLE_DATABASE",
       "fieldConfig": {
         "defaults": {
           "color": {
