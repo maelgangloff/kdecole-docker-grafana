@@ -36,11 +36,6 @@ dayjs@^1.10.4:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
   integrity sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
 
-esm@^3.2.25:
-  version "3.2.25"
-  resolved "https://registry.yarnpkg.com/esm/-/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
-  integrity sha512-U1suiZ2oDVWv4zPO56S0NcR5QriEahGtdN2OR6FiOG4WJvcjBVFB0qI4+eKoWFH483PKGuLuu6V8Z4T5g63UVA==
-
 follow-redirects@^1.10.0:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.2.tgz#dd73c8effc12728ba5cf4259d760ea5fb83e3147"
@@ -57,12 +52,11 @@ isarray@~1.0.0:
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
 kdecole-api@latest:
-  version "1.0.19"
-  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.0.19.tgz#49a8f2a5b820c36e94d8e96790d2655693c16fa0"
-  integrity sha512-kza0FaHAG3hNa2bVSXvxvTI3KPSoheFNPbFmbO/IWM0qN78HKv8BD8XkDbStEawipS4X4kguULe1CT4hlwrs+g==
+  version "1.0.20"
+  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.0.20.tgz#1b8c5502a5a9b4faf1d6a6a49b25fc7a411e7116"
+  integrity sha512-TeXE2LyNo+n8xszE6mmh9bAn1XROMhus2XnLspRdSbXDVzzbwUlVqbX5M++a9lnh/pXcwfniDzJ/CkhhiYp/Rw==
   dependencies:
     axios "^0.21.1"
-    esm "^3.2.25"
 
 moment-timezone@^0.5.x:
   version "0.5.33"
