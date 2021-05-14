@@ -110,7 +110,9 @@ async function fetchHolidays() {
     const holiday = (await get(`https://data.education.gouv.fr/api/records/1.0/search/?dataset=fr-en-calendrier-scolaire&q=&lang=fr&rows=15&facet=description&facet=start_date&facet=end_date&facet=annee_scolaire&refine.annee_scolaire=${annee_scolaire}&refine.location=${process.env.KDECOLE_ACADEMIE}&timezone=Europe%2FParis`)).data.records
         .filter(record => dayjs(record.fields.start_date).isAfter() && record.fields.population !== 'Enseignants')
         .sort((a, b) => dayjs(a.fields.start_date) - dayjs(b.fields.start_date))[0]
-    connection.query(`INSERT holidays VALUES (1, "${holiday.fields.description}", '${holiday.fields.start_date}', '${holiday.fields.end_date}', ${dayjs(holiday.fields.start_date).diff(dayjs(), 'days')+1});`)
+        const start_date = dayjs(holiday.fields.start_date)
+        const end_date = dayjs(holiday.fields.end_date)
+    connection.query(`INSERT holidays VALUES (1, "${holiday.fields.description}", '${start_date.format('YYYY-MM-DD')}', '${end_date.format('YYYY-MM-DD')}', ${start_date.diff(dayjs(), 'days')+1});`)
 }
 
 fetch()

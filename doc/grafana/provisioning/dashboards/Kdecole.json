@@ -466,7 +466,7 @@
                 "value": null
               },
               {
-                "color": "#EAB839",
+                "color": "yellow",
                 "value": 10
               },
               {
@@ -557,15 +557,15 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-red",
                 "value": null
               },
               {
-                "color": "dark-red",
+                "color": "yellow",
                 "value": 10
               },
               {
-                "color": "#EAB839",
+                "color": "green",
                 "value": 12
               },
               {
