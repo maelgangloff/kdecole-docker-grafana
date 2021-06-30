@@ -110,9 +110,9 @@ isarray@~1.0.0:
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
 kdecole-api@latest:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.2.tgz#17f24383e6fb2c06b33ed9a6e259db1b43411dd2"
-  integrity sha512-wmah1ycotUH1HhxgKyq5WT8zwXukqSDTubb1zmOrIRkMl4u7XC4P2Q+KCyGzca00zGfHxBFnGsMrAP6FVMFMQQ==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.3.tgz#a8510cd8ba15174e5bbd21245cc364e824bb9a26"
+  integrity sha512-8yC8AWmcv70VE3AzWOhJwTQdn2HR4hLobZO+eBsTFK3ZCC1my22WTSDh5SwfQORKUWadY4aIaqgqR2QRpapgqg==
   dependencies:
     axios "^0.21.1"
     csv-writer "^1.6.0"
