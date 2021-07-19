@@ -64,11 +64,6 @@ cron@^1.8.2:
   dependencies:
     moment-timezone "^0.5.x"
 
-csv-writer@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/csv-writer/-/csv-writer-1.6.0.tgz#d0cea44b6b4d7d3baa2ecc6f3f7209233514bcf9"
-  integrity sha512-NOx7YDFWEsM/fTRAJjRpPp8t+MKRVvniAg9wQlUKx20MFrPs73WLJhFf5iteqrxNYnsy924K3Iroh3yNHeYd2g==
-
 dayjs@^1.10.6:
   version "1.10.6"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.6.tgz#288b2aa82f2d8418a6c9d4df5898c0737ad02a63"
@@ -110,12 +105,11 @@ isarray@~1.0.0:
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
 kdecole-api@latest:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.3.tgz#a8510cd8ba15174e5bbd21245cc364e824bb9a26"
-  integrity sha512-8yC8AWmcv70VE3AzWOhJwTQdn2HR4hLobZO+eBsTFK3ZCC1my22WTSDh5SwfQORKUWadY4aIaqgqR2QRpapgqg==
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.5.tgz#23e642eb6a2794b5e1a791ef8e3093bce3409a50"
+  integrity sha512-0XxsW/9QY4vMMqZAScSJGJHef1QRUnbz1z5gviDoB3Dhprf22xfN68Df3KyMQW1NoWLD1yPdaum+o2gUC1qO1w==
   dependencies:
     axios "^0.21.1"
-    csv-writer "^1.6.0"
     yargs "^17.0.1"
 
 moment-timezone@^0.5.x:
