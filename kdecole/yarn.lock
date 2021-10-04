@@ -105,9 +105,9 @@ isarray@~1.0.0:
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
 
 kdecole-api@latest:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.7.tgz#91ffd6b3a8085e17289ca4bb353bc7714d1c2c3a"
-  integrity sha512-vXClnGtu1/6n/tgDNYOSySKkDKvsHjotc/WxIP6QSd0JSPXDczcgs03+sB4YgZiPxsLVPTWHoE1aq5VDO6opmQ==
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.2.8.tgz#57fd84af37f4d3dec94d3779fb9cc7106bcaa7c8"
+  integrity sha512-kUYAxyf9yws44e5c2aPxnHuWuuBJZB1ahPOXEUg9UGuXTukir2ckTgTIrmjW47cNN3KbX/hZH3Tx9YZD4B6g9Q==
   dependencies:
     axios "^0.21.1"
     yargs "^17.0.1"
