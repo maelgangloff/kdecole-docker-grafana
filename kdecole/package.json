@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.26.1",
-    "cron": "^1.8.2",
+    "cron": "^1.8.3",
     "dayjs": "^1.11.0",
     "kdecole-api": "latest",
     "mysql": "^2.18.1"
