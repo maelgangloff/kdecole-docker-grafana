@@ -12,7 +12,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "cron": "^2.0.0",
-    "dayjs": "^1.11.1",
+    "dayjs": "^1.11.2",
     "kdecole-api": "latest",
     "mysql": "^2.18.1"
   },
