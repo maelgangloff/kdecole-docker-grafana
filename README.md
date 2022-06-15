@@ -46,8 +46,9 @@ La seule "difficulté" est de faire la bonne requête à la base de données.
 
 ![gafana dashboard](https://github.com/maelgangloff/kdecole-docker-grafana/blob/master/doc/grafana_dashboard.png?raw=true)
 Si vous voulez partir d'une
-base, [le code JSON de ce dashboard](https://github.com/maelgangloff/kdecole-docker-grafana/blob/master/doc/dashboard.example.json)
-est disponible.
+base, [le code JSON de ce dashboard](https://github.com/maelgangloff/kdecole-docker-grafana/raw/master/doc/grafana/provisioning/dashboards/Kdecole.json)
+est disponible.  
+Cependant, il n'est pas assuré que cet exemple fonctionne du premier coup, il est peut-être nécessaire de modifier les identifiants de période de notation (vous pouvez les retrouver en explorant le contenu des données récoltées via l'outil *Explore* de Grafana).
 
 ## Exemples de requêtes SQL
 
