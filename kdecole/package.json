@@ -17,6 +17,6 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.42"
+    "@types/node": "^18.0.0"
   }
 }
