@@ -30,6 +30,8 @@ services:
     restart: always
     environment:
       KDECOLE_TOKEN: VOTRE_TOKEN
+      KDECOLE_URL: https://mobilite.monbureaunumerique.fr/mobilite
+#      KDECOLE_VERSION: '3.7.14'
       KDECOLE_ACADEMIE: Strasbourg
     networks:
       - kdecole

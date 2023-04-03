@@ -1,32 +1,46 @@
 # Tableau de bord de ses relevés scolaires
 
-Utilise l'API K-D'Ecole pour récupérer ses notes et les transformer en graphiques.
+Utilise l'API K-D'Ecole pour récupérer ses notes et les représenter graphiquement.
 
 ## Installation
 
 1. Installer docker et docker-compose
-1. Lancer `docker volume create mariadb-storage` et `docker volume create grafana-storage`
+1. Créer les volumes docker. Vos données y seront stockées.
+```shell
+docker volume create mariadb-storage
+```
+```shell
+docker volume create grafana-storage
+```
 1. Cloner le projet
-1. Modifier le fichier docker-compose.yml en adaptant `KDECOLE_TOKEN: VOTRE_TOKEN` avec votre jeton d'identification K-D'Ecole et `KDECOLE_ACADEMIE: Strasbourg` avec le nom de votre circonscription académique.
-1. Lancer la commande `docker-compose up --build -d`
-1. Se rendre dans son navigateur à l'adresse http://localhost:3000/
-1. Se connecter (par défaut, le nom d'utilisateur et le mot de passe sont `admin`) puis changez votre mot de passe
+```shell
+git clone https://github.com/maelgangloff/kdecole-docker-grafana
+```
+1. Modifier le fichier docker-compose.yml :
+   * `KDECOLE_TOKEN` : Pour obtenir votre jeton d'authentification K-D'Ecole, reportez-vous à la section correspondante.
+   * `KDECOLE_URL` : L'URL de l'API.
+   * `KDECOLE_ACADEMIE` : Le nom de votre circonscription académique.
+1. Démarrez les conteneurs Docker
+```shell
+docker-compose up --build -d
+```
+1. Rendez-vous à l'adresse http://localhost:3000
+1. Se connecter (par défaut, le nom d'utilisateur et le mot de passe sont `admin`) puis changez votre mot de passe.  
+Un tableau de bord est déjà configuré. Pour être fonctionnel, il nécessite quelques ajustements. Si les moyennes des matières ne sont pas trouvées, il faut modifier la requête pour trouver l'identifiant de la période de notation.
 1. Créez votre tableau de bord
 
 ### Obtenir son jeton d'authentification  K-D'Ecole
 
 * Installer NodeJs
-* Exécuter la commande ```npm -i kdecole-api```
-* Créer un fichier nommé index.js dans un répertoire quelconque
-* Ajouter les lignes suivantes au fichier
-
-```js
-const Kdecole = require('kdecole-api').default
-Kdecole.login("identifiant_mbn", "code_d'activation_mobile").then(token => console.log(token))
+* Installer la librairie kdecole-api en global
+```shell
+npm -i kdecole-api
 ```
-
-* Exécuter ```node .``` dans le même répertoire
-* Récupérer le jeton
+* Exécuter le binaire pour obtenir le jeton
+```shell
+npx kdecole-api -u IDENTIFIANT -p CODE_TEMPORAIRE --ent PROD_MON_BUREAU_NUMERIQUE
+```
+Ne communiquez jamais votre jeton à un tier. Il vous est strictement personnel. Si vous pensez que votre jeton a fuité, révoquez-le immédiatement.
 
 ### Créer son tableau de bord
 
