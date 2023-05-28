@@ -140,7 +140,7 @@ isarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha512-VLghIWNM6ELQzo7zwmcg0NmTVyWKYjvIeM83yjp0wRDTmUnrM678fQbcKBo6n2CJEF0szoG//ytg+TKla89ALQ==
 
-kdecole-api@latest:
+kdecole-api@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/kdecole-api/-/kdecole-api-1.4.1.tgz#df84540ae7f827f562a3f17372ed3a05746f959e"
   integrity sha512-Zrf6rxMX7L0MXJaAUjVYfq/U4QU38wfZkJTqKjgnUSarhVvKrV1CbOdGgOkga1bf2cAtBBSAj+eg1WCfzda5Kw==
