@@ -1,4 +1,4 @@
-# Tableau de bord de ses relevés scolaires
+# Tableau de bord - Relevés de notes
 
 [![Discord](https://img.shields.io/discord/1095829734211977276?label=Discord&style=flat-square)](https://discord.gg/9u69mxsFT6)
 
@@ -6,7 +6,8 @@
   <img src="https://github.com/The-Rabbit-Team/.github/blob/master/banners/kdecole-docker-grafana.png?raw=true" />
 </p>
 
-Utilise l'API K-D'Ecole pour récupérer ses notes et les représenter graphiquement.
+Utilise l'API K-D'Ecole pour récupérer ses notes et les représenter graphiquement.  
+🚨 Attention : ce projet utilise l'ancienne version de l'API Skolengo (module [kdecole-api](https://github.com/maelgangloff/kdecole-api)). Il est possible qu'elle devienne obsolète dans l'éventualité où l'accès à l'ancienne API serait définitivement clos.
 
 ## Installation
 
