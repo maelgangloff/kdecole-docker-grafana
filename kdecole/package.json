@@ -1,5 +1,5 @@
 {
-  "name": "kdecole-docker",
+  "name": "kdecole-mysql",
   "private": true,
   "version": "1.0.0",
   "main": "index.js",

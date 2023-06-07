@@ -1,6 +1,7 @@
 FROM node
 WORKDIR /usr/src/app
 COPY package*.json ./
+COPY yarn.lock ./
 RUN yarn install --production=true && yarn cache clean
 COPY . .
 ENV MYSQL_HOST=database
